@@ -3,18 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Gen Z Girl 💖</title>
+    <title>Gui be Thu Thao 💖</title>
     <link rel="stylesheet" href="vkiu.css">
 </head>
 <body>
+    <div class="flying-hearts" id="flying-hearts"></div>
     <div class="container">
-        <h1>Gui vk iu cua ck 🦄✨</h1>
-        <p class="main-text">Ck iu nho vk thui cua ck lam<br>
-        <span class="heart">💗</span> Vk iu co nho ck hk <span class="sparkle">✨</span></p>
-        <button class="btn-love" onclick="alert('Iu vk lam 😘')">Click</button>
+        <h1>Gui vk iu 🦄✨</h1>
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+        <p class="main-text">Ck nho vk thui cua ck lam<br>
+        <span class="heart">💗</span> Vk thui co nho ck hk? <span class="sparkle">✨</span></p>
+        <div class="cute-divider"><span>💘</span></div>
+        <div class="love-quote">
+            "Yeu vk tu cai nhin dau tien,<br>
+            Yeu vk toi dau troc rang rung."
+        </div>
+        <div class="countdown">
+            <div class="countdown-title">Chung minh da yeu nhau duoc:</div>
+            <div class="countdown-timer" id="love-counter">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">0</div>
+                    <div class="countdown-label">Ngay</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">0</div>
+                    <div class="countdown-label">Gio</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">0</div>
+                    <div class="countdown-label">Phut</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">0</div>
+                    <div class="countdown-label">Giay</div>
+                </div>
+            </div>
+        </div>
+        <div class="memories">
+            <div class="memory-placeholder" onclick="showMemory('Lần đầu gặp nhau')">❤️</div>
+            <div class="memory-placeholder" onclick="showMemory('Lần đầu nắm tay')">🤝</div>
+            <div class="memory-placeholder" onclick="showMemory('Ngày đặc biệt')">🎁</div>
+            <div class="memory-placeholder" onclick="showMemory('Chuyến đi chơi')">🏖️</div>
+            <div class="memory-placeholder" onclick="showMemory('Sinh nhật vợ yêu')">🎂</div>
+            <span class="memories-tip">(Bấm vào từng icon để xem kỷ niệm 💡)</span>
+        </div>
+        <div class="music-player">
+            <button class="btn-music" onclick="toggleMusic()">▶️</button>
+            <button class="btn-music" onclick="nextSong()">⏭️</button>
+            <div class="playlist">
+                Đang phát: <span id="current-song">Bài hát tình yêu</span>
+            </div>
+        </div>
+        <div class="secret-message" onclick="revealSecret()">
+            <div class="secret-message-cover">
+                Ấn vào để xem điều bí mật 💌
+            </div>
+            <div class="secret-message-text" id="secret-message">
+                Ck iu nho vk thui cua ck lam. 💞
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button class="btn-love" onclick="showLove()"> 😘</button>
+            <button class="btn-love" onclick="showCalendar()">📅</button>
+            <button class="btn-love" onclick="sendHeart()">❤️</button>
+        </div>
         <div class="emoji-rain">
             <span>💖</span><span>🦋</span><span>🌈</span><span>✨</span><span>💘</span>
         </div>
+        <div class="cute-footer">
+            Yêu vợ mãi mãi ∞ | Ngày tạo: <span id="creation-date"></span>
+        </div>
     </div>
+    <!-- Modals -->
+    <div class="modal" id="love-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('love-modal')">&times;</span>
+            <h2>Ck iu vk nhiu lam! 💘</h2>
+            <div class="modal-footer-fix">
+                <button class="btn-love" onclick="closeModal('love-modal')">Vk cung iu ck ❤️</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="calendar-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('calendar-modal')">&times;</span>
+            <h2>Lịch Những Ngày Đặc Biệt 📅</h2>
+            <div class="calendar">
+                <div class="calendar-day calendar-weekday">CN</div>
+                <div class="calendar-day calendar-weekday">T2</div>
+                <div class="calendar-day calendar-weekday">T3</div>
+                <div class="calendar-day calendar-weekday">T4</div>
+                <div class="calendar-day calendar-weekday">T5</div>
+                <div class="calendar-day calendar-weekday">T6</div>
+                <div class="calendar-day calendar-weekday">T7</div>
+                <div class="calendar-day">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day">5</div>
+                <div class="calendar-day special-day" title="Ngày đầu tiên chúng mình gặp nhau">6</div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day">11</div>
+                <div class="calendar-day special-day" title="Ngày chúng mình yêu nhau">12</div>
+                <div class="calendar-day">13</div>
+                <div class="calendar-day">14</div>
+                <div class="calendar-day">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day special-day">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day">19</div>
+                <div class="calendar-day">20</div>
+                <div class="calendar-day" title="Lần đầu chồng tặng quà vợ">21</div>
+                <div class="calendar-day">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day">24</div>
+                <div class="calendar-day">25</div>
+                <div class="calendar-day">26</div>
+                <div class="calendar-day special-day">27</div>
+                <div class="calendar-day">28</div>
+            </div>
+            <div class="modal-footer-fix">
+                <button class="btn-love" onclick="closeModal('calendar-modal')">Đóng</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="memory-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('memory-modal')">&times;</span>
+            <h2 id="memory-title">Kỷ niệm đẹp</h2>
+            <p id="memory-description">Những khoảnh khắc tuyệt vời của chúng mình.</p>
+            <div class="modal-footer-fix">
+                <button class="btn-love" onclick="closeModal('memory-modal')">Đóng</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function createFlyingHearts() {
+            const container = document.getElementById('flying-hearts');
+            const heartEmojis = ['❤️', '💗', '💓', '💘', '💝', '💖'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('flying-heart');
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                const leftPos = Math.random() * 100;
+                heart.style.left = leftPos + 'vw';
+                const duration = 10 + Math.random() * 15;
+                heart.style.animationDuration = duration + 's';
+                heart.style.setProperty('--direction', Math.random() > 0.5 ? '1' : '-1');
+                heart.style.setProperty('--spin-direction', Math.random() > 0.5 ? '1' : '-1');
+                heart.style.animationDelay = (Math.random() * 15) + 's';
+                container.appendChild(heart);
+            }
+        }
+        function updateLoveCounter() {
+            const startDate = new Date('2024-11-17T00:00:00'); 
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = mins;
+            document.getElementById('seconds').textContent = secs;
+        }
+        const songs = [
+            "Bài hát tình yêu",
+            "Em của ngày hôm qua",
+            "Chắc ai đó sẽ về",
+            "Ánh nắng của anh",
+            "Nếu em còn tồn tại",
+            "Yêu là tha thu"
+        ];
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        function toggleMusic() {
+            isPlaying = !isPlaying;
+            document.querySelector('.btn-music').textContent = isPlaying ? '⏸️' : '▶️';
+        }
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            document.getElementById('current-song').textContent = songs[currentSongIndex];
+        }
+        function showLove() {
+            document.getElementById('love-modal').style.display = 'flex';
+        }
+        function showCalendar() {
+            document.getElementById('calendar-modal').style.display = 'flex';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        function showMemory(title) {
+            const memories = {
+                'Lần đầu gặp nhau': 'Ngày đó thật đẹp, chồng vẫn nhớ như in khoảnh khắc đầu tiên nhìn thấy vợ. Vợ đẹp như một thiên thần vừa bước xuống trần gian.',
+                'Lần đầu nắm tay': 'Lần đầu tiên mình nắm tay nhau, tim chồng đập loạn xạ. Bàn tay vợ thật ấm áp và mềm mại, chồng ước gì khoảnh khắc đó kéo dài mãi mãi.',
+                'Ngày đặc biệt': 'Ngày chồng nói lời "Chồng yêu vợ" đầu tiên. Chồng đã chuẩn bị rất kỹ và hồi hộp lắm. Nhưng ánh mắt vợ đã trả lời tất cả.',
+                'Chuyến đi chơi': 'Chuyến đi chơi đầu tiên của hai đứa mình thật vui. Chồng vẫn nhớ nụ cười rạng rỡ của vợ khi ngắm hoàng hôn bên bờ biển.',
+                'Sinh nhật vợ yêu': 'Sinh nhật vợ là ngày đặc biệt nhất với chồng. Chồng đã chuẩn bị bất ngờ và thấy hạnh phúc khi vợ thích món quà chồng tặng.'
+            };
+            document.getElementById('memory-title').textContent = title;
+            document.getElementById('memory-description').textContent = memories[title] || 'Kỷ niệm đẹp của chúng mình';
+            document.getElementById('memory-modal').style.display = 'flex';
+        }
+        function sendHeart() {
+            const emojis = ["❤️", "💖", "💘", "💝", "💕", "💓", "💗", "💞"];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const heart = document.createElement("div");
+            heart.textContent = emoji;
+            heart.style.position = "fixed";
+            heart.style.fontSize = "2rem";
+            heart.style.left = "50%";
+            heart.style.bottom = "20%";
+            heart.style.transform = "translateX(-50%)";
+            heart.style.animation = "send-heart 2s forwards";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                document.body.removeChild(heart);
+            }, 2000);
+        }
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes send-heart {
+                    0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+                    100% { transform: translateX(-50%) translateY(-300px) scale(0); opacity: 0; }
+                }
+            </style>
+        `);
+        function revealSecret() {
+            document.querySelector('.secret-message-cover').style.opacity = "0";
+            document.getElementById('secret-message').style.opacity = "1";
+        }
+        function updateCreationDate() {
+            const now = new Date();
+            const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+            document.getElementById('creation-date').textContent = formattedDate;
+        }
+        createFlyingHearts();
+        updateLoveCounter();
+        setInterval(updateLoveCounter, 1000);
+        updateCreationDate();
+    </script>
 </body>
 </html>
